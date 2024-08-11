@@ -22,6 +22,17 @@ app.post("/api/tasks", (req, res) => {
   }
 });
 
+app.put("/api/tasks/:id", (req, res) => {
+  const { id } = req.params;
+  const task = tasks.find((t) => t.id == id);
+  if (task) {
+    task.completed = !task.completed;
+    res.json(task);
+  } else {
+    res.status(404).json({ error: "Task not found" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running http://localhost:${PORT}`);
 });
