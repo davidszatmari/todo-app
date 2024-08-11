@@ -33,6 +33,17 @@ app.put("/api/tasks/:id", (req, res) => {
   }
 });
 
+app.delete("/api/tasks/:id", (req, res) => {
+  const { id } = req.params;
+  const taskIndex = tasks.findIndex((t) => t.id == id);
+  if (taskIndex !== -1) {
+    tasks.splice(taskIndex, 1);
+    res.status(204).end();
+  } else {
+    res.status(404).json({ error: "Task not found" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running http://localhost:${PORT}`);
 });
