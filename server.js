@@ -44,6 +44,8 @@ app.delete("/api/tasks/:id", (req, res) => {
   }
 });
 
+app.use(express.static("public"));
+
 app.listen(PORT, () => {
   console.log(`Server is running http://localhost:${PORT}`);
 });
